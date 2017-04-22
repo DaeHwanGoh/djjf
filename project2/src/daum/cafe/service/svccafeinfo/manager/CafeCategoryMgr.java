@@ -83,7 +83,7 @@ public class CafeCategoryMgr {
 //				midList.add(cate);
 //			} else {
 //				subList.add(cate);
-//				hashLinkingNode(cate);
+				hashLinkingNode(cate);
 			}
 
 		}
@@ -103,16 +103,16 @@ public class CafeCategoryMgr {
 //			}
 //		}
 	}
-//	public void hashLinkingNode(Tcategory cate){
-//		CafeCategoryNode midnode = getNode(cate.parcateid);
-//		CafeCategoryNode subnode = getNode(cate.cateid);
-//		if (midnode == null) {
-//			__logger.error("부모 category node를 찾을 수 없습니다. : " + cate.parcateid);
-//		} else {
-//			midnode.addChildren(subnode);
-//			subnode.setParent(midnode);
-//		}
-//	}
+	public void hashLinkingNode(Tcategory cate){
+		CafeCategoryNode midnode = getNode(cate.parcateid);
+		CafeCategoryNode subnode = getNode(cate.cateid);
+		if (midnode == null) {
+			__logger.error("부모 category node를 찾을 수 없습니다. : " + cate.parcateid);
+		} else {
+			midnode.addChildren(subnode);
+			subnode.setParent(midnode);
+		}
+	}
 
 	public Tcategory[] getAll() {
 		if (_categoryArray == null) {
