@@ -13,7 +13,7 @@
 <style>
 .namnam {
 	width: 98%;
-	margin-left: 1em;
+	margin-left: 1em; 
 }
 a {
 	color: #222222;
