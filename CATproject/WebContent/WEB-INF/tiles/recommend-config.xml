@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- /view/template.jsp를 기반으로 타일을 조립해서 t_01이란 타일 등록 -->
+	<definition name="reco_t_01" template="/template.jsp">
+<!-- 		<put-attribute name="title" value="CATmain" /> -->
+		<put-attribute name="header" value="/header.jsp" />
+		<put-attribute name="nav" value="/nav.jsp" />
+		<put-attribute name="nav-side" value="/nav-side.jsp" />
+		<put-attribute name="footer" value="/footer.jsp" />
+	</definition>
+	
+<!-- 추천작 페이지 홈화면 -->	
+	<definition name="t_reco_main" extends="reco_t_01">
+		<put-attribute name="main" value="/recommend/reco_main.jsp"/>
+	</definition>	
+
+	
+</tiles-definitions>

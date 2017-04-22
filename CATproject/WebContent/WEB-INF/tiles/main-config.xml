@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- /view/template.jsp를 기반으로 타일을 조립해서 t_01이란 타일 등록 -->
+	<definition name="m_t_01" template="/template.jsp">
+		<!-- <put-attribute name="title" value="CATmain" /> -->
+		<put-attribute name="header" value="/header.jsp" />
+		<put-attribute name="nav" value="/nav.jsp" />
+		<put-attribute name="nav-side" value="/nav-side.jsp" />
+		<put-attribute name="footer" value="/footer.jsp" />
+	</definition>
+
+<!-- 홈화면 -->	
+	<definition name="t_main" extends="m_t_01">
+		<put-attribute name="main" value="/main.jsp"/>
+	</definition>	
+	
+<!-- 회원 가입 -->	
+	<definition name="t_join01" extends="m_t_01">
+		<put-attribute name="main" value="/join/input_basic.jsp"/>
+	</definition>
+	
+	<definition name="t_join02" extends="m_t_01">
+		<put-attribute name="main" value="/join/input_advance.jsp"/>
+	</definition>
+	
+<!-- 로그인 -->		
+	<definition name="t_login" extends="m_t_01">
+		<put-attribute name="main" value="/login/input.jsp"/>
+	</definition>
+
+
+<!-- 회원 정보 -->
+	<!-- 회원 프로필 화면 메인 -->
+	<definition name="t_infomain" extends="m_t_01">
+		<put-attribute name="main" value="/my/update_form.jsp"/>
+	</definition>
+
+				
+<!-- 회원 탈퇴시 비밀번호 요청 -->
+	<definition name="t_leave" extends="m_t_01">
+		<put-attribute name="main" value="/my/input_pass.jsp"/>
+	</definition>
+
+
+	<!-- 영화 상세정보 페이지 -->	
+	<definition name="t_main3" extends="m_t_01">
+		<put-attribute name="main" value="/main3.jsp"/>
+	</definition>
+
+
+
+	<!-- 검색결과/좋아요한 컨텐크 상세정보 페이지 -->
+	<definition name="s_t_01" extends="m_t_01">
+		<put-attribute name="main" value="/search_view/search.jsp" />
+	</definition>
+
+
+	<definition name="like_t_01" extends="m_t_01">
+		<put-attribute name="main" value="/like_view/like.jsp" />
+	</definition>
+	
+	<definition name="review_t_01" extends="m_t_01">
+		<put-attribute name="main" value="/review_view/review.jsp" />
+	</definition>
+	
+	<definition name="t_view2" extends="m_t_01">
+		<put-attribute name="main" value="/view2/view2.jsp" />
+	</definition>
+	<definition name="t_view22" extends="m_t_01">
+		<put-attribute name="main" value="/view2/reco_main.jsp" />
+	</definition>
+	<definition name="t_authview" extends="m_t_01">
+		<put-attribute name="main" value="/giveauthority.jsp" />
+	</definition>
+
+
+	<!-- 게시판 -->
+	<definition name="post_t_01" extends="m_t_01">
+		<put-attribute name="main" value="/mypage.jsp" />
+	</definition>
+	
+	<definition name="t_pstore" extends="m_t_01">
+		<put-attribute name="main" value="/ckeditor.jsp" />
+	</definition>
+	
+	<definition name="nFeed_t" extends="m_t_01">
+		<put-attribute name="main" value="/newsFeed.jsp" />
+	</definition>
+	
+	
+	
+
+</tiles-definitions>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:repository="http://www.springframework.org/schema/data/repository"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.10.xsd
+		http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository.xsd">
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />   
+
+	<context:annotation-config />  
+	<context:component-scan base-package="models" />
+	<context:component-scan base-package="controller" />
+	<context:component-scan base-package="utils" />
+
+   
+	<!-- 멀티파트 요청 처리용 빈 등록/ 파일용 -->
+	<bean
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		id="multipartResolver">
+		<property name="uploadTempDir" value="/share/temp" />
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="maxUploadSize" value="-1" /> <!-- -1은 업로드 사이즈 무한 -->
+
+	</bean>
+
+	<!-- tile -->
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"
+		p:order="8" />
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/*-config.xml</value>
+			</list>
+		</property> 
+	</bean>
+
+	<bean class="org.springframework.web.servlet.ModelAndView" scope="prototype"/>
+	<bean class="models.APIExam3" scope="prototype" />
+    <bean class="models.UrlList3" scope="prototype" />
+
+	<!-- ViewResolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="99" />
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+   
+	<!-- mongoClient 추가 -->
+	<mongo:mongo-client host="121.134.125.131" port="27017"
+		id="mongo" />
+	<bean class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongo" ref="mongo" />
+		<constructor-arg name="databaseName" value="namnami" />
+	</bean>
+	
+	<bean class="models.AllDao">
+		<property name="dataSource" ref="datasource"/>
+	</bean>
+	<bean class="allDao.AllDao">
+		<property name="dataSource" ref="datasource"/>
+	</bean>
+
+	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="datasource">
+		<property name="password" value="oracle" />
+		<property name="user" value="cat" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@121.134.125.131:1521:xe" />
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
+	</bean>
+
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="mapperLocations">
+			<list>
+				<value>/WEB-INF/mappers/*-mapper.xml</value>
+			</list>
+		</property> 
+		<property name="dataSource" ref="datasource" />
+	</bean>
+
+
+</beans>
