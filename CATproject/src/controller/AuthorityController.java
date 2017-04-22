@@ -35,7 +35,7 @@ public class AuthorityController {
 	public ModelAndView showlist(HttpSession session){
 		String id = (String)session.getAttribute("auth_id");
 		if(authDao.maxAuthority(authDao.userAuthority(id)).equals("user") || 
-				authDao.userAuthority(id).equals("vip")){
+				authDao.maxAuthority(authDao.userAuthority(id)).equals("vip")){
 			ModelAndView mav=new ModelAndView("redirect:/authority.jsp");
 			return mav;
 		}
